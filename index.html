@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hi Cutiepie</title>
+<style>
+  :root {
+    --bg1: #ff9a9e;
+    --bg2: #fad0c4;
+    --bg3: #a18cd1;
+    --bg4: #fbc2eb;
+    --text: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(-45deg, var(--bg1), var(--bg2), var(--bg4), var(--bg3));
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+    position: relative;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .hearts {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .heart {
+    position: absolute;
+    bottom: -10%;
+    font-size: 24px;
+    opacity: 0.85;
+    animation: floatUp linear infinite;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.6));
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.9; }
+    90% { opacity: 0.9; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .card {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 3rem 3.5rem;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px rgba(120, 30, 90, 0.25);
+    max-width: 90vw;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
+    color: var(--text);
+    text-shadow: 0 0 20px rgba(255,255,255,0.6), 0 4px 10px rgba(150,40,90,0.4);
+    letter-spacing: 2px;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+  }
+
+  .subtitle {
+    margin-top: 1rem;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 2px 6px rgba(120,30,90,0.3);
+  }
+
+  .sparkle {
+    position: absolute;
+    color: white;
+    animation: twinkle 1.6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hearts" id="hearts"></div>
+
+  <div class="card">
+    <h1>HI CUTIEPIE 💖</h1>
+    <div class="subtitle">✨ hope your day is as sweet as you are ✨</div>
+  </div>
+
+<script>
+  const heartsContainer = document.getElementById('hearts');
+  const emojis = ['💖','💕','💗','✨','🌸'];
+  const count = 22;
+
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('div');
+    el.className = 'heart';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = (16 + Math.random() * 20) + 'px';
+    const duration = 6 + Math.random() * 8;
+    el.style.animationDuration = duration + 's';
+    el.style.animationDelay = (Math.random() * duration) + 's';
+    heartsContainer.appendChild(el);
+  }
+</script>
+
+</body>
+</html>
